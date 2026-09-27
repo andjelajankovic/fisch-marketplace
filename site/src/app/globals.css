@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+:root {
+  --color-cream: #07101b;
+  --color-ink: #edf5fb;
+  --color-ink-soft: #b7ccd9;
+  --color-deep: #0d2130;
+  --color-teal: #80d7d8;
+  --color-sand: #ecdab0;
+  --color-border: rgba(219, 239, 248, 0.18);
+}
+
+@theme inline {
+  --color-background: var(--color-cream);
+  --color-foreground: var(--color-ink);
+  --font-sans: var(--font-manrope);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(34, 89, 120, 0.32), transparent 42%),
+    radial-gradient(
+      circle at 100% 100%,
+      rgba(20, 73, 98, 0.28),
+      transparent 50%
+    ),
+    radial-gradient(circle at 50% 20%, rgba(6, 27, 40, 0.58), transparent 56%),
+    var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-manrope), sans-serif;
+  line-height: 1.5;
+}
+
+* {
+  scrollbar-color: rgba(128, 215, 216, 0.45) transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: rgba(128, 215, 216, 0.42);
+  border-radius: 9999px;
+}
+
+.font-display {
+  font-family: var(--font-fraunces), serif;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--color-sand);
+}
+
+.map-shell {
+  border: 1px solid var(--color-border);
+  border-radius: 2rem;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 24, 35, 0.84),
+    rgba(4, 14, 24, 0.92)
+  );
+  box-shadow: 0 40px 90px -60px rgba(0, 0, 0, 0.75);
+}
+
+.habitat-zone {
+  position: absolute;
+  display: block;
+  border-radius: 9999px;
+  outline: none;
+}
+
+.habitat-zone__pulse {
+  position: absolute;
+  inset: 8%;
+  border-radius: 9999px;
+  border: 1px solid rgba(236, 218, 176, 0.16);
+  background: radial-gradient(
+    circle,
+    rgba(128, 215, 216, 0.16),
+    rgba(128, 215, 216, 0)
+  );
+  opacity: 0;
+  transform: scale(0.92);
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
+.habitat-zone__label {
+  position: absolute;
+  min-width: 12rem;
+  max-width: 15rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(236, 245, 248, 0.2);
+  background: rgba(238, 244, 246, 0.16);
+  padding: 0.7rem 1rem;
+  color: #f5fbff;
+  backdrop-filter: blur(18px);
+  box-shadow: 0 10px 30px -20px rgba(3, 8, 14, 0.85);
+  transition:
+    transform 180ms ease,
+    background 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.habitat-zone__label strong {
+  display: block;
+  font-family: var(--font-fraunces), serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.habitat-zone__label small {
+  display: block;
+  margin-top: 0.12rem;
+  font-size: 0.74rem;
+  line-height: 1.35;
+  color: rgba(240, 247, 255, 0.8);
+}
+
+.habitat-zone[href$="stream"] .habitat-zone__label {
+  left: -1.2rem;
+  top: -0.8rem;
+}
+
+.habitat-zone[href$="river"] .habitat-zone__label {
+  left: 10%;
+  top: 18%;
+}
+
+.habitat-zone[href$="sea"] .habitat-zone__label {
+  right: -0.5rem;
+  top: 4%;
+}
+
+.habitat-zone:hover .habitat-zone__pulse,
+.habitat-zone:focus-visible .habitat-zone__pulse {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.habitat-zone:hover .habitat-zone__label,
+.habitat-zone:focus-visible .habitat-zone__label {
+  transform: translateY(-2px);
+  background: rgba(238, 244, 246, 0.24);
+  border-color: rgba(236, 218, 176, 0.34);
+  box-shadow: 0 16px 34px -18px rgba(7, 25, 37, 0.85);
+}
+
+.habitat-zone:focus-visible {
+  outline: 2px solid rgba(236, 218, 176, 0.72);
+  outline-offset: 6px;
+}
+
+.scene-shell {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 2rem;
+  min-height: calc(100vh - 3rem);
+  background: linear-gradient(
+    180deg,
+    rgba(8, 24, 35, 0.84),
+    rgba(4, 14, 24, 0.92)
+  );
+  box-shadow: 0 40px 90px -60px rgba(0, 0, 0, 0.75);
+}
+
+.scene-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(8, 20, 32, 0.26),
+    rgba(8, 20, 32, 0.5)
+  );
+}
+
+.glass-panel {
+  border: 1px solid rgba(238, 244, 246, 0.16);
+  background: rgba(9, 20, 31, 0.56);
+  backdrop-filter: blur(18px);
+  box-shadow: 0 30px 50px -36px rgba(0, 0, 0, 0.65);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .habitat-zone__pulse,
+  .habitat-zone__label {
+    transition: none;
+    transform: none;
+  }
+}
